@@ -1,27 +1,40 @@
-# PasswordInput
+![Alt text](/src/assets/media/password_input_preview.png)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.3.
+# Why?
 
-## Development server
+Security for companies is crucial, passwords is one of the main things to consider when designing a website.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+The password field in the signup page, is to consider for an effective user experience.
 
-## Code scaffolding
+When dealing with more than 3 requirements, it is clear that it can be overwhelming for some people.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+# How to make it effective?
 
-## Build
+## Legibility
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+ - Make the requirements text before the input field.
+<sub><sup>By doing that, you make sure people read the requirements first, to make it clear what they have to enter.
+Also, it prevents errors and saves time.</sup></sub>
 
-## Running unit tests
+ - Consider adding a show/hide password button.
+ <sub><sup>People often need to recheck what they have entered.</sup></sub>
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+ ## Realtime feedback
 
-## Running end-to-end tests
+ when people make a mistake, it can be frustrated for them. So guiding them toward what is going wrong and how to fix it is important.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+ When people are typing, consider:
+  - Highlighting which requirement is satisfied.
+  - If the user decides to leave the input or submit the form, without validating all requirements, consider communicating an input error by changing the input border color to red.
 
-## Further help
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+# How to run the project?
+
+- Install project dependencies by running:
+`npm install` or `yarn install`
+- [Run the project](https://angular.io/guide/setup-local#run-the-application)
+
+# References
+
+- [Login & Signup Flows: Basics and Best Practices](https://app.uxcel.com/courses/common-patterns/loginsignup-best-practices-854)
+- [Error messages guidelines](https://www.nngroup.com/articles/error-message-guidelines/)
