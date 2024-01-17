@@ -13,7 +13,9 @@ export class InputPasswordComponent
 {
     @Input() label = 'Password';
     public isPasswordShown: boolean = false;
-    public loginForm: FormGroup<any>;
+    public loginForm: FormGroup<{
+        password: FormControl<string|null>
+    }>;
     public sPECIAL_CHARACTERS = `${SPECIAL_CHARACTERS_REGEX}`.replace('/[', '').replace(']/', '');
 
     get password ()
@@ -44,7 +46,7 @@ export class InputPasswordComponent
     constructor ()
     {
         this.loginForm = new FormGroup({
-            password: new FormControl<string>('', [
+            password: new FormControl<string|null>(null, [
                 Validators.required,
                 Validators.minLength(MIN_PASSWORD_LENGTH),
                 PasswordValidator.hasUpper,

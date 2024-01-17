@@ -13,9 +13,9 @@ describe('PasswordValidator', () =>
 
     describe('METHOD: hasUpper', () =>
     {
-        it('Should validate if an input include an uppercase character', () =>
+        it('Should raise an error when input value don\'t include an uppercase character', () =>
         {
-            const formControl = new FormControl({});
+            const formControl = new FormControl();
             formControl.setValue('i am lowercased');
             const error: ValidationResult = { [uppercaseIsMissing]: true };
 
@@ -27,10 +27,10 @@ describe('PasswordValidator', () =>
 
     describe('METHOD: hasNumber', () =>
     {
-        it('Should validate if an input include a Number', () =>
+        it('Should raise an error when input value don\'t include a number', () =>
         {
-            const formControl = new FormControl({});
-            formControl.setValue('i dont include any number !');
+            const formControl = new FormControl();
+            formControl.setValue('I dont include any number !');
             const error: ValidationResult = { [numberIsMissing]: true };
 
             returnedResult = PasswordValidator.hasNumber(formControl);
@@ -41,9 +41,9 @@ describe('PasswordValidator', () =>
 
     describe('METHOD: hasSpecialCharacter', () =>
     {
-        it('Should validate if an input dont include a Special Character', () =>
+        it('Should raise an error when input value don\'t include a Special Character', () =>
         {
-            const formControl = new FormControl({});
+            const formControl = new FormControl();
             formControl.setValue('I dont include any special character');
             const error: ValidationResult = { [specialCharacterIsMissing]: true };
 
