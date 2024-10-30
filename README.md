@@ -1,31 +1,46 @@
 ![Alt text](/src/assets/media/password_input_preview.png)
 
-# Why?
+# Password Component
+## Why?
 
-Security for companies is crucial, passwords is one of the main things to consider when designing a website.
+In today’s digital landscape, security is paramount, and password management is one of the main pillars of effective web security. To enhance security, especially for companies, password requirements must be clear, yet user-friendly. Balancing usability and security in the signup process is essential.
 
-The password field in the signup page, is to consider for an effective user experience.
+A thoughtfully designed password field improves user experience, even when multiple security requirements are in place. Our component aims to simplify this experience, helping users understand and meet password requirements with ease.
+## Design Choices for an Effective Password Field
 
-When dealing with more than 3 requirements, it is clear that it can be overwhelming for some people.
+ **1. Legibility and Clarity**
 
-# How to make it effective?
+- **Preemptive Requirement Display**  
+    Display password requirements above the input field. This helps users understand the necessary criteria before they begin typing, reducing errors and saving time.
 
-## Legibility
+- **Show/Hide Password Toggle**  
+    Including a toggle for showing or hiding the password allows users to review their input as needed, ensuring accuracy without the frustration of hidden text.
 
- - Make the requirements text before the input field.
-<sub><sup>By doing that, you make sure people read the requirements first, to make it clear what they have to enter.
-Also, it prevents errors and saves time.</sup></sub>
+ **2. Progressive Requirement Validation**
 
- - Consider adding a show/hide password button.
- <sub><sup>People often need to recheck what they have entered.</sup></sub>
+Guiding users with feedback as they type can reduce frustration. Here’s how we handle this:
 
- ## Realtime feedback
+- **Non-Intrusive Error Checking**  
+    Avoid interrupting users with error messages as they type. Instead, wait until they finish typing or shift focus away from the input field.
 
- when people make a mistake, it can be frustrated for them. So guiding them toward what is going wrong and how to fix it is important.
+- **Dynamic Requirement Validation**  
+    Highlight each fulfilled requirement in real-time to reassure users they’re on the right track.
 
- When people are typing, consider:
-  - Highlighting which requirement is satisfied.
-  - If the user decides to leave the input or submit the form, without validating all requirements, consider communicating an input error by changing the input border color to red.
+- **Clear Error Indication**  
+    If a user tries to submit or leave the field without meeting all requirements, use a subtle cue—like a red border around the input field—to indicate an issue without disruptive alerts.
+
+ **3. Meaningful Error Messages**
+
+Error messages should be clear, polite, and easy to understand. Short, precise messages help users quickly identify and correct issues.
+
+- **Simple Language**  
+    Avoid technical terms. Use clear, everyday language to help users understand what to fix. Instead of “Invalid password,” try “Add at least one uppercase letter.”
+
+- **Keep it Short**  
+    Limit messages to one or two sentences. Clear, direct messages reduce frustration and help users focus.
+
+- **Be Specific and Polite**  
+    Point out what’s missing in a friendly way. For example, “Please add a special character for a stronger password.”
 
 
 # How to run the project?
