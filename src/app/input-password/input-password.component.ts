@@ -1,8 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
-import { PasswordValidator } from 'src/app/shared/validators/password.validator';
-import { MIN_PASSWORD_LENGTH, SPECIAL_CHARACTERS_REGEX } from '../shared/base/form.constants';
+import { hasSpecialCharacterValidator, hasNumberValidator, hasUpperValidator, minLengthValidator } from 'src/app/shared/validators/password.validator';
+import { MIN_PASSWORD_LENGTH, SPECIAL_CHARACTERS } from '../shared/base/form.constants';
 import { minLength, numberIsMissing, specialCharacterIsMissing, uppercaseIsMissing } from '../shared/validators/validation-errors';
 
 @Component({
@@ -16,7 +16,6 @@ export class InputPasswordComponent
     public loginForm: FormGroup<{
         password: FormControl<string|null>
     }>;
-    public sPECIAL_CHARACTERS = `${SPECIAL_CHARACTERS_REGEX}`.replace('/[', '').replace(']/', '');
 
     get password ()
     {
@@ -26,33 +25,47 @@ export class InputPasswordComponent
     {
         return this.password?.invalid && (this.password.dirty || this.password.touched);
     }
-    get minLengthIsInvalid ()
+    get minLength ()
     {
-        return this.password?.errors?.['required'] || this.password?.errors?.[minLength];
+        return {
+            unsatisfied: this.password?.errors?.['required'] || this.password?.errors?.[minLength],
+            label: `At least ${MIN_PASSWORD_LENGTH} characters`
+        }
     }
-    get uppercaseIsInvalid ()
+    get uppercase ()
     {
-        return this.password?.errors?.['required'] || this.password?.errors?.[uppercaseIsMissing];
+        return {
+            unsatisfied: this.password?.errors?.['required'] || this.password?.errors?.[uppercaseIsMissing],
+            label: `At least one uppercase character`
+        }
     }
-    get numberIsInvalid ()
+    get number ()
     {
-        return this.password?.errors?.['required'] || this.password?.errors?.[numberIsMissing];
+        return {
+            unsatisfied: this.password?.errors?.['required'] || this.password?.errors?.[numberIsMissing],
+            label: `At least one number`
+        }
     }
-    get specialCharacterIsInvalid ()
+    get specialCharacter ()
     {
-        return this.password?.errors?.['required'] || this.password?.errors?.[specialCharacterIsMissing]
+        return {
+            unsatisfied: this.password?.errors?.['required'] || this.password?.errors?.[specialCharacterIsMissing],
+            label: `At least one special character of ${SPECIAL_CHARACTERS}`
+        }
     }
 
     constructor ()
     {
         this.loginForm = new FormGroup({
-            password: new FormControl<string|null>(null, [
-                Validators.required,
-                Validators.minLength(MIN_PASSWORD_LENGTH),
-                PasswordValidator.hasUpper,
-                PasswordValidator.hasNumber,
-                PasswordValidator.hasSpecialCharacter
-            ]),
+            password: new FormControl<string|null>(null, {
+                validators: [
+                    Validators.required,
+                    minLengthValidator,
+                    hasUpperValidator,
+                    hasNumberValidator,
+                    hasSpecialCharacterValidator
+                ]
+            }),
         });
     }
 

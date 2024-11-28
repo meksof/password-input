@@ -1,5 +1,5 @@
 <div class="min-lenght h-6 flex flex-column">
-    <div *ngIf="isInvalid; else check" class="warning w-4 h-4 mr-2">
+    <div *ngIf="!isSatisfied; else check" class="warning w-4 h-4 mr-2">
     </div>
     <ng-template #check>
         <div class="check w-4 h-4 mr-2">
@@ -11,9 +11,9 @@
         </div>
     </ng-template>
     <div class="text-xs font-normal font-['Roboto']" [ngClass]="{
-      'text-gray-500': isInvalid,
-      'text-green-600': !isInvalid
+      'text-gray-500': !isSatisfied,
+      'text-green-600': isSatisfied
     }">
-        {{errorLabel}}
+        {{label}}
     </div>
 </div>

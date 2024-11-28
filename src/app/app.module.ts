@@ -4,19 +4,18 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { InputPasswordComponent } from './input-password/input-password.component';
-import { ErrorMsgComponent } from './input-password/error-msg/error-msg.component';
+import { HelperMsg } from './input-password/error-msg/helper-msg';
 
 @NgModule({
     declarations: [
         AppComponent,
         InputPasswordComponent,
-        ErrorMsgComponent
+        HelperMsg
     ],
     imports: [
         BrowserModule,
         ReactiveFormsModule
     ],
-    providers: [],
     bootstrap: [AppComponent]
 })
 export class AppModule

@@ -1,48 +1,57 @@
-import { FormControl } from '@angular/forms';
+import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 
-import { SPECIAL_CHARACTERS_REGEX } from '../base/form.constants';
+import { MIN_PASSWORD_LENGTH, SPECIAL_CHARACTERS_REGEX } from '../base/form.constants';
 import {
-    ValidationResult,
+    minLength,
     numberIsMissing,
     specialCharacterIsMissing,
     uppercaseIsMissing
 } from './validation-errors';
 
-export class PasswordValidator
+export const minLengthValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null =>
 {
-    public static hasUpper (control: FormControl): ValidationResult | null
+    const length = control.value?.length;
+
+    if (length && length < MIN_PASSWORD_LENGTH)
     {
-        const hasUpper = /[A-Z]/.test(control.value);
-
-        if (!hasUpper)
-        {
-            return { [uppercaseIsMissing]: true };
-        }
-
-        return null;
+        return { [minLength]: true };
     }
 
-    public static hasNumber (control: FormControl): ValidationResult | null
+    return null;
+}
+
+export const hasUpperValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null =>
+{
+    const hasUpper = /[A-Z]/.test(control.value);
+
+    if (!hasUpper)
     {
-        const hasNumber = /\d/.test(control.value);
-
-        if (!hasNumber)
-        {
-            return { [numberIsMissing]: true };
-        }
-
-        return null;
+        return { [uppercaseIsMissing]: true };
     }
 
-    public static hasSpecialCharacter (control: FormControl): ValidationResult | null
+    return null;
+}
+
+export const hasNumberValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null =>
+{
+    const hasNumber = /\d/.test(control.value);
+
+    if (!hasNumber)
     {
-        const hasSpecialCharacter = SPECIAL_CHARACTERS_REGEX.test(control.value);
-
-        if (!hasSpecialCharacter)
-        {
-            return { [specialCharacterIsMissing]: true }
-        }
-
-        return null;
+        return { [numberIsMissing]: true };
     }
+
+    return null;
+}
+
+export const hasSpecialCharacterValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null =>
+{
+    const hasSpecialCharacter = SPECIAL_CHARACTERS_REGEX.test(control.value);
+
+    if (!hasSpecialCharacter)
+    {
+        return { [specialCharacterIsMissing]: true }
+    }
+
+    return null;
 }

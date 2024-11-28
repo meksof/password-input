@@ -1,6 +1,6 @@
-import { FormControl } from '@angular/forms';
-import { PasswordValidator } from './password.validator';
-import { ValidationResult, numberIsMissing, specialCharacterIsMissing, uppercaseIsMissing } from './validation-errors';
+import { FormControl, ValidationErrors } from '@angular/forms';
+import { hasSpecialCharacterValidator, hasNumberValidator, hasUpperValidator } from './password.validator';
+import { numberIsMissing, specialCharacterIsMissing, uppercaseIsMissing } from './validation-errors';
 
 describe('PasswordValidator', () =>
 {
@@ -17,9 +17,9 @@ describe('PasswordValidator', () =>
         {
             const formControl = new FormControl();
             formControl.setValue('i am lowercased');
-            const error: ValidationResult = { [uppercaseIsMissing]: true };
+            const error: ValidationErrors = { [uppercaseIsMissing]: true };
 
-            returnedResult = PasswordValidator.hasUpper(formControl);
+            returnedResult = hasUpperValidator(formControl);
 
             expect(returnedResult).toEqual(error);
         })
@@ -31,9 +31,9 @@ describe('PasswordValidator', () =>
         {
             const formControl = new FormControl();
             formControl.setValue('I dont include any number !');
-            const error: ValidationResult = { [numberIsMissing]: true };
+            const error: ValidationErrors = { [numberIsMissing]: true };
 
-            returnedResult = PasswordValidator.hasNumber(formControl);
+            returnedResult = hasNumberValidator(formControl);
 
             expect(returnedResult).toEqual(error);
         })
@@ -45,9 +45,9 @@ describe('PasswordValidator', () =>
         {
             const formControl = new FormControl();
             formControl.setValue('I dont include any special character');
-            const error: ValidationResult = { [specialCharacterIsMissing]: true };
+            const error: ValidationErrors = { [specialCharacterIsMissing]: true };
 
-            returnedResult = PasswordValidator.hasSpecialCharacter(formControl);
+            returnedResult = hasSpecialCharacterValidator(formControl);
 
             expect(returnedResult).toEqual(error);
         })
